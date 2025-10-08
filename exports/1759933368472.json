@@ -1,0 +1,19 @@
+{
+  "timestamp": 1759933368472,
+  "operation": {
+    "id": "webapp:react:views",
+    "refs": {
+      "id": "UV_PlantDatabase",
+      "version": "1759933308611"
+    }
+  },
+  "projectId": "create-a-web-for-plants",
+  "files": [
+    {
+      "path": "/mnt/data/create-a-web-for-plants/vitereact/src/components/views/UV_PlantDatabase.tsx",
+      "type": "text",
+      "size": 4830,
+      "dependencies": false
+    }
+  ]
+}

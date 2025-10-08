@@ -1,0 +1,19 @@
+{
+  "timestamp": 1759933358109,
+  "operation": {
+    "id": "webapp:react:views",
+    "refs": {
+      "id": "UV_CareGuides",
+      "version": "1759933308626"
+    }
+  },
+  "projectId": "create-a-web-for-plants",
+  "files": [
+    {
+      "path": "/mnt/data/create-a-web-for-plants/vitereact/src/components/views/UV_CareGuides.tsx",
+      "type": "text",
+      "size": 2859,
+      "dependencies": false
+    }
+  ]
+}

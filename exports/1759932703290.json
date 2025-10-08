@@ -1,0 +1,15 @@
+{
+  "timestamp": 1759932703290,
+  "operation": {
+    "id": "db:postgres"
+  },
+  "projectId": "create-a-web-for-plants",
+  "files": [
+    {
+      "path": "/mnt/data/create-a-web-for-plants/backend/db.sql",
+      "type": "text",
+      "size": 5707,
+      "dependencies": false
+    }
+  ]
+}

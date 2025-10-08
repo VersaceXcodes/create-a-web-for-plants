@@ -1,0 +1,325 @@
+openapi: 3.0.0
+info:
+  title: PlantConnect API
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000/api
+paths:
+  /auth/register:
+    post:
+      summary: Register a new user
+      operationId: registerUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateUserInput"
+      responses:
+        "200":
+          description: User registered successfully, returns auth token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  auth_token:
+                    type: string
+  /auth/login:
+    post:
+      summary: User login
+      operationId: loginUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+      responses:
+        "200":
+          description: User logged in successfully, returns auth token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  auth_token:
+                    type: string
+  /users/{user_id}:
+    get:
+      summary: Get user profile
+      operationId: getUserProfile
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: User profile retrieved
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+  /plants:
+    get:
+      summary: Search and filter plants
+      operationId: searchPlants
+      parameters:
+        - name: type
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: light_requirement
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: watering_needs
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: query
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 10
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 0
+      responses:
+        "200":
+          description: A list of plants
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Plant"
+  /plants/{plant_id}:
+    get:
+      summary: Get details of a specific plant
+      operationId: getPlantDetails
+      parameters:
+        - name: plant_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Plant details
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Plant"
+  /care-guides:
+    get:
+      summary: Get plant care guides
+      operationId: getCareGuides
+      responses:
+        "200":
+          description: A list of plant care guides
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CareGuide"
+  /forum:
+    get:
+      summary: Get forum posts
+      operationId: getForumPosts
+      responses:
+        "200":
+          description: A list of forum posts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ForumPost"
+    post:
+      summary: Create a forum post
+      operationId: createForumPost
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateForumPostInput"
+      responses:
+        "201":
+          description: Forum post created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ForumPost"
+  /marketplace:
+    get:
+      summary: Get marketplace listings
+      operationId: getMarketplaceListings
+      responses:
+        "200":
+          description: A list of marketplace listings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/PlantMarketplace"
+    post:
+      summary: Create a marketplace listing
+      operationId: createMarketplaceListing
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreatePlantMarketplaceInput"
+      responses:
+        "201":
+          description: Marketplace listing created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PlantMarketplace"
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        user_id:
+          type: string
+        email:
+          type: string
+          format: email
+        name:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+    CreateUserInput:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        name:
+          type: string
+    Plant:
+      type: object
+      properties:
+        plant_id:
+          type: string
+        scientific_name:
+          type: string
+        common_name:
+          type: string
+        description:
+          type: string
+          nullable: true
+        care_guidelines:
+          type: string
+          nullable: true
+        photos:
+          type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
+        light_requirement:
+          type: string
+          nullable: true
+        watering_needs:
+          type: string
+          nullable: true
+        user_reviews:
+          type: string
+          nullable: true
+    CareGuide:
+      type: object
+      properties:
+        guide_id:
+          type: string
+        plant_family:
+          type: string
+          nullable: true
+        content:
+          type: string
+        created_by:
+          type: string
+    ForumPost:
+      type: object
+      properties:
+        post_id:
+          type: string
+        user_id:
+          type: string
+        content:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        topic:
+          type: string
+    CreateForumPostInput:
+      type: object
+      properties:
+        user_id:
+          type: string
+        content:
+          type: string
+        topic:
+          type: string
+    PlantMarketplace:
+      type: object
+      properties:
+        listing_id:
+          type: string
+        user_id:
+          type: string
+        plant_id:
+          type: string
+        condition:
+          type: string
+        desired_trade:
+          type: string
+          nullable: true
+        status:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+    CreatePlantMarketplaceInput:
+      type: object
+      properties:
+        user_id:
+          type: string
+        plant_id:
+          type: string
+        condition:
+          type: string
+        desired_trade:
+          type: string
+          nullable: true
+        status:
+          type: string

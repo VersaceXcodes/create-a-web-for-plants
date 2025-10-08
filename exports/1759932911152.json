@@ -1,0 +1,15 @@
+{
+  "timestamp": 1759932911152,
+  "operation": {
+    "id": "backend:specifications:openapi"
+  },
+  "projectId": "create-a-web-for-plants",
+  "files": [
+    {
+      "path": "/mnt/data/create-a-web-for-plants/backend/openapi.yaml",
+      "type": "text",
+      "size": 7836,
+      "dependencies": false
+    }
+  ]
+}

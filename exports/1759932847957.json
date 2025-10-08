@@ -1,0 +1,15 @@
+{
+  "timestamp": 1759932847957,
+  "operation": {
+    "id": "db:schemas:zod"
+  },
+  "projectId": "create-a-web-for-plants",
+  "files": [
+    {
+      "path": "/mnt/data/create-a-web-for-plants/backend/schema.ts",
+      "type": "text",
+      "size": 12899,
+      "dependencies": false
+    }
+  ]
+}

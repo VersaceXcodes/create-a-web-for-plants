@@ -1,0 +1,15 @@
+{
+  "timestamp": 1759933137858,
+  "operation": {
+    "id": "backend:server:main"
+  },
+  "projectId": "create-a-web-for-plants",
+  "files": [
+    {
+      "path": "/mnt/data/create-a-web-for-plants/backend/server.ts",
+      "type": "text",
+      "size": 17169,
+      "dependencies": false
+    }
+  ]
+}

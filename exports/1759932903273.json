@@ -1,0 +1,15 @@
+{
+  "timestamp": 1759932903273,
+  "operation": {
+    "id": "backend:specifications:asyncapi"
+  },
+  "projectId": "create-a-web-for-plants",
+  "files": [
+    {
+      "path": "/mnt/data/create-a-web-for-plants/backend/asyncapi.yaml",
+      "type": "text",
+      "size": 5343,
+      "dependencies": false
+    }
+  ]
+}

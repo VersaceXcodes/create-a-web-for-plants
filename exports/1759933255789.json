@@ -1,0 +1,15 @@
+{
+  "timestamp": 1759933255789,
+  "operation": {
+    "id": "settings:config:package"
+  },
+  "projectId": "create-a-web-for-plants",
+  "files": [
+    {
+      "path": "/mnt/data/create-a-web-for-plants/vitereact/package.json",
+      "type": "text",
+      "size": 2949,
+      "dependencies": true
+    }
+  ]
+}

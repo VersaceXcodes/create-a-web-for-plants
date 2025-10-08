@@ -1,0 +1,19 @@
+{
+  "timestamp": 1759933254596,
+  "operation": {
+    "id": "webapp:react:store",
+    "refs": {
+      "id": "redux",
+      "version": "1759933170674"
+    }
+  },
+  "projectId": "create-a-web-for-plants",
+  "files": [
+    {
+      "path": "/mnt/data/create-a-web-for-plants/vitereact/src/store/main.tsx",
+      "type": "text",
+      "size": 5466,
+      "dependencies": false
+    }
+  ]
+}

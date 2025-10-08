@@ -1,0 +1,220 @@
+asyncapi: 2.0.0
+info:
+  title: PlantConnect Realtime API
+  version: 1.0.0
+  description: This is the AsyncAPI specification for the realtime features of the
+    PlantConnect web application.
+servers:
+  production:
+    url: ws://localhost:3000
+    protocol: ws
+channels:
+  user/login:
+    subscribe:
+      operationId: userLoggedIn
+      summary: User logged in
+      message:
+        payload:
+          type: object
+          properties:
+            current_user:
+              type: object
+              properties:
+                user_id:
+                  type: string
+                email:
+                  type: string
+                name:
+                  type: string
+                created_at:
+                  type: string
+            auth_token:
+              type: string
+            authentication_status:
+              type: object
+              properties:
+                is_authenticated:
+                  type: boolean
+                is_loading:
+                  type: boolean
+            error_message:
+              type: string
+              nullable: true
+  user/logout:
+    subscribe:
+      operationId: userLoggedOut
+      summary: User logged out
+      message:
+        payload:
+          type: object
+          properties:
+            current_user:
+              type: "null"
+            auth_token:
+              type: "null"
+            authentication_status:
+              type: object
+              properties:
+                is_authenticated:
+                  type: boolean
+                is_loading:
+                  type: boolean
+            error_message:
+              type: "null"
+  plant/created:
+    publish:
+      operationId: plantCreated
+      summary: New plant entry created
+      message:
+        payload:
+          $ref: "#/components/schemas/Plant"
+  plant/updated:
+    publish:
+      operationId: plantUpdated
+      summary: Existing plant entry updated
+      message:
+        payload:
+          $ref: "#/components/schemas/Plant"
+  forum/post/created:
+    publish:
+      operationId: forumPostCreated
+      summary: New forum post created
+      message:
+        payload:
+          $ref: "#/components/schemas/ForumPost"
+  forum/reply/created:
+    publish:
+      operationId: forumReplyCreated
+      summary: New forum reply created
+      message:
+        payload:
+          $ref: "#/components/schemas/ForumReply"
+  marketplace/listing/created:
+    publish:
+      operationId: marketplaceListingCreated
+      summary: New marketplace listing created
+      message:
+        payload:
+          $ref: "#/components/schemas/PlantMarketplace"
+  marketplace/listing/updated:
+    publish:
+      operationId: marketplaceListingUpdated
+      summary: Marketplace listing updated
+      message:
+        payload:
+          $ref: "#/components/schemas/PlantMarketplace"
+  trade/request/created:
+    publish:
+      operationId: tradeRequestCreated
+      summary: New trade request created
+      message:
+        payload:
+          $ref: "#/components/schemas/TradeRequest"
+  notification/received:
+    subscribe:
+      operationId: notificationReceived
+      summary: Notification for user
+      message:
+        payload:
+          type: object
+          properties:
+            user_id:
+              type: string
+            notification:
+              type: string
+            activity_type:
+              type: string
+            reference_id:
+              type: string
+              nullable: true
+            created_at:
+              type: string
+components:
+  schemas:
+    Plant:
+      type: object
+      properties:
+        plant_id:
+          type: string
+        scientific_name:
+          type: string
+        common_name:
+          type: string
+        description:
+          type: string
+          nullable: true
+        care_guidelines:
+          type: string
+          nullable: true
+        photos:
+          type: string
+          nullable: true
+        type:
+          type: string
+          nullable: true
+        light_requirement:
+          type: string
+          nullable: true
+        watering_needs:
+          type: string
+          nullable: true
+        user_reviews:
+          type: string
+          nullable: true
+    ForumPost:
+      type: object
+      properties:
+        post_id:
+          type: string
+        user_id:
+          type: string
+        content:
+          type: string
+        created_at:
+          type: string
+        topic:
+          type: string
+    ForumReply:
+      type: object
+      properties:
+        reply_id:
+          type: string
+        post_id:
+          type: string
+        user_id:
+          type: string
+        content:
+          type: string
+        created_at:
+          type: string
+    PlantMarketplace:
+      type: object
+      properties:
+        listing_id:
+          type: string
+        user_id:
+          type: string
+        plant_id:
+          type: string
+        condition:
+          type: string
+        desired_trade:
+          type: string
+          nullable: true
+        status:
+          type: string
+        created_at:
+          type: string
+    TradeRequest:
+      type: object
+      properties:
+        request_id:
+          type: string
+        listing_id:
+          type: string
+        user_id:
+          type: string
+        status:
+          type: string
+        created_at:
+          type: string
